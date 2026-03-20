@@ -1,0 +1,12 @@
+{
+  "id": "blacksmith",
+  "name": "Blacksmith",
+  "description": "A master craftsman who forges and sells weapons and armor. The smell of coal and hot metal fills the air.",
+  "inventory": [
+    { "item_id": "sword_iron", "stock": -1, "price_multiplier": 1.0 },
+    { "item_id": "sword_steel", "stock": 3, "price_multiplier": 1.2 },
+    { "item_id": "armor_leather", "stock": -1, "price_multiplier": 1.0 }
+  ],
+  "buy_multiplier": 0.4,
+  "restock_interval_seconds": 300
+}

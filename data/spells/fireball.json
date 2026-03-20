@@ -1,0 +1,14 @@
+{
+  "id": "fireball",
+  "name": "Fireball",
+  "description": "Hurls a blazing sphere of fire that explodes on impact, scorching all enemies in the blast radius.",
+  "type": "damage",
+  "mana_cost": 25,
+  "cooldown": 2.0,
+  "range": 300,
+  "damage": 45,
+  "damage_type": "fire",
+  "area_radius": 80,
+  "cast_time": 0.5,
+  "projectile_speed": 400
+}

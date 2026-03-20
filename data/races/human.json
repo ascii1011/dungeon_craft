@@ -1,0 +1,23 @@
+{
+  "id": "human",
+  "name": "Human",
+  "description": "Versatile and adaptable, humans excel in many disciplines and form the backbone of most adventuring parties.",
+  "base_stats": {
+    "hp": 100,
+    "mana": 80,
+    "strength": 10,
+    "dexterity": 10,
+    "intelligence": 10,
+    "vitality": 10
+  },
+  "stat_growth": {
+    "hp": 8,
+    "mana": 5,
+    "strength": 1,
+    "dexterity": 1,
+    "intelligence": 1,
+    "vitality": 1
+  },
+  "traits": ["adaptable"],
+  "allowed_classes": ["warrior", "mage"]
+}

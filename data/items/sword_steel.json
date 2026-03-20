@@ -1,0 +1,18 @@
+{
+  "id": "sword_steel",
+  "name": "Steel Sword",
+  "description": "A finely crafted steel sword with superior balance and edge retention. A significant upgrade over iron.",
+  "type": "weapon",
+  "slot": "weapon",
+  "rarity": "uncommon",
+  "value": 150,
+  "stats": {
+    "attack": 15,
+    "attack_speed": 1.3
+  },
+  "requirements": {
+    "strength": 10
+  },
+  "stackable": false,
+  "max_stack": 1
+}

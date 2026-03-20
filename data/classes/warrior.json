@@ -1,0 +1,12 @@
+{
+  "id": "warrior",
+  "name": "Warrior",
+  "description": "A seasoned fighter trained in heavy arms and armor. Warriors rely on brute strength and endurance to outlast their foes.",
+  "stat_modifiers": {
+    "strength": 3,
+    "vitality": 2,
+    "intelligence": -1
+  },
+  "starting_spells": [],
+  "starting_items": ["sword_iron", "armor_leather"]
+}

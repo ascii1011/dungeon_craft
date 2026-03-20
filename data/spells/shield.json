@@ -1,0 +1,14 @@
+{
+  "id": "shield",
+  "name": "Shield",
+  "description": "Conjures a magical barrier around the caster that absorbs a portion of incoming damage.",
+  "type": "buff",
+  "mana_cost": 30,
+  "cooldown": 8.0,
+  "range": 0,
+  "cast_time": 0.4,
+  "effect": {
+    "damage_reduction": 0.3,
+    "duration": 5.0
+  }
+}
