@@ -1,0 +1,11 @@
+# Python dependencies for DungeonCraft tools
+# Install with: pip install -r tools/requirements.txt
+
+# Test runner
+pytest>=8.0,<9
+
+# JSON schema validation (used by validate_data.py)
+jsonschema>=4.21,<5
+
+# YAML parsing (for data files that use YAML format)
+PyYAML>=6.0,<7

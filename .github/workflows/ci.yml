@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    name: GDScript Lint & Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install gdtoolkit
+        run: pip install gdtoolkit
+
+      - name: Lint GDScript files
+        run: gdlint scripts/
+
+      - name: Check GDScript formatting
+        run: gdformat --check scripts/
+
+  validate-data:
+    name: Validate Data & Python Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Run data validator
+        run: python tools/validate_data.py
+
+      - name: Run validator unit tests
+        run: python -m pytest tools/test_validate_data.py -v
+
+  unit-tests:
+    name: GUT Unit Tests (Headless)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.3 headless binary
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          unzip -q Godot_v4.3-stable_linux.x86_64.zip
+          chmod +x Godot_v4.3-stable_linux.x86_64
+
+      - name: Install GUT addon
+        run: |
+          mkdir -p addons/gut
+          # Download GUT 7.4.1 from the godot-gut/gut GitHub releases
+          wget -q -O gut.zip https://github.com/bitwes/Gut/releases/download/v7.4.1/gut_v7.4.1.zip
+          unzip -q gut.zip -d gut_extracted
+          # The zip contains an addons/gut/ directory; copy its contents
+          cp -r gut_extracted/addons/gut/. addons/gut/
+
+      - name: Run unit tests headless
+        run: |
+          ./Godot_v4.3-stable_linux.x86_64 \
+            --headless \
+            --path . \
+            -s addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/unit/ \
+            -gexit
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "Unit tests failed with exit code $EXIT_CODE"
+            exit $EXIT_CODE
+          fi
