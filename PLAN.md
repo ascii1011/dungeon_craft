@@ -177,23 +177,52 @@ dungeon_craft/
 
 ---
 
+## Branching Strategy
+
+```
+main          ← production-ready, protected, only accepts PRs from develop
+develop       ← integration branch, CI must pass before merge to main
+feature/*     ← your work and mine, branch from develop, PR back to develop
+```
+
+### Rules
+- **main**: no direct push. Requires PR from develop + all CI checks green.
+- **develop**: CI must pass. Direct push allowed for small fixes.
+- **feature branches**: `feature/<short-description>`, branch from develop.
+- Version tags (`v1.0.0`) on main trigger the build/export workflow.
+
+### Day-to-day flow
+```
+git checkout develop && git pull
+git checkout -b feature/my-thing
+  ... work + tests ...
+git push → PR to develop → CI runs → merge
+  ... accumulate features ...
+PR develop → main → CI runs → merge → tag → build artifacts released
+```
+
+---
+
 ## CI/CD Flow
 
 ```
-Local dev
+feature/* branch
   ├── Godot editor (scene + script editing)
   ├── GUT tests (run in editor or headless)
   ├── python tools/validate_data.py
-  └── git push → PR
+  └── git push → PR to develop
           │
           └── GitHub Actions: ci.yml
                 ├── Validate all JSON data files (Python)
                 ├── GDScript lint (gdtoolkit)
                 ├── Run GUT unit tests (Godot headless)
-                └── On merge to main:
-                        └── build.yml
-                              ├── Export builds (Linux, Windows, Web)
-                              └── Upload artifacts to GitHub Release
+                └── Merge to develop
+                        │
+                        └── PR develop → main (release-ready)
+                                └── CI green → merge → tag v*.*.*
+                                        └── build.yml
+                                              ├── Export Linux / Windows / Web
+                                              └── Upload to GitHub Release
 ```
 
 ---
