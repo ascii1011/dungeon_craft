@@ -1,0 +1,27 @@
+{
+  "id": "dwarf",
+  "name": "Dwarf",
+  "description": "Deep in their ancestral halls, dwarves have carved civilization from raw stone for millennia. Masters of dungeon terrain, they read the rock like a map and resist the poisons that fester in its depths. Their stout frames carry heavy armor with ease, making them formidable defenders of the underground.",
+  "base_stats": {
+    "hp": 110,
+    "mana": 60,
+    "strength": 12,
+    "dexterity": 7,
+    "intelligence": 11,
+    "vitality": 15
+  },
+  "stat_growth": {
+    "hp": 9,
+    "mana": 4,
+    "strength": 1,
+    "dexterity": 0,
+    "intelligence": 1,
+    "vitality": 2
+  },
+  "traits": ["stonecunning", "poison_resistance"],
+  "allowed_classes": ["warrior", "mage"],
+  "trait_descriptions": {
+    "stonecunning": "In stone or dungeon zones, the dwarf gains bonus perception, trap detection, and a small combat advantage.",
+    "poison_resistance": "Centuries in toxic depths have granted dwarves significant resistance to poison effects."
+  }
+}
