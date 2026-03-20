@@ -1,0 +1,24 @@
+{
+  "id": "goblin",
+  "name": "Goblin",
+  "description": "A small, cunning creature that lurks in dark places. Goblins are weak alone but dangerous in packs.",
+  "level": 1,
+  "stats": {
+    "hp": 30,
+    "attack": 5,
+    "defense": 2,
+    "speed": 80,
+    "aggro_range": 150,
+    "attack_range": 40,
+    "attack_speed": 1.5
+  },
+  "xp_reward": 10,
+  "gold_drop": {
+    "min": 1,
+    "max": 5
+  },
+  "loot_table": [
+    { "item_id": "potion_health", "chance": 0.15 }
+  ],
+  "ai": "melee_chase"
+}

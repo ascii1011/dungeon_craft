@@ -1,0 +1,13 @@
+{
+  "id": "blink",
+  "name": "Blink",
+  "description": "Teleports the caster a short distance in the direction they are facing, bypassing obstacles.",
+  "type": "utility",
+  "mana_cost": 20,
+  "cooldown": 5.0,
+  "range": 200,
+  "cast_time": 0.1,
+  "effect": {
+    "teleport_distance": 200
+  }
+}

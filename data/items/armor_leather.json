@@ -1,0 +1,16 @@
+{
+  "id": "armor_leather",
+  "name": "Leather Armor",
+  "description": "Light armor crafted from tanned hides. Offers modest protection without hampering movement.",
+  "type": "armor",
+  "slot": "body",
+  "rarity": "common",
+  "value": 40,
+  "stats": {
+    "defense": 5,
+    "dexterity": 1
+  },
+  "requirements": {},
+  "stackable": false,
+  "max_stack": 1
+}

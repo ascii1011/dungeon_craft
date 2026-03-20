@@ -1,0 +1,17 @@
+{
+  "id": "potion_health",
+  "name": "Health Potion",
+  "description": "A ruby-red liquid that instantly restores a portion of the drinker's health.",
+  "type": "consumable",
+  "slot": null,
+  "rarity": "common",
+  "value": 25,
+  "stats": {},
+  "requirements": {},
+  "effect": {
+    "type": "heal",
+    "amount": 50
+  },
+  "stackable": true,
+  "max_stack": 10
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mage",
+  "name": "Mage",
+  "description": "A scholarly spellcaster who wields powerful arcane magic. Mages are fragile in melee but devastating at range.",
+  "stat_modifiers": {
+    "intelligence": 4,
+    "mana": 20,
+    "strength": -2
+  },
+  "starting_spells": ["fireball", "heal"],
+  "starting_items": ["potion_mana"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "slow",
+  "name": "Slow",
+  "description": "Weaves a hex of sluggishness around a target, drastically reducing their movement speed.",
+  "type": "debuff",
+  "mana_cost": 15,
+  "cooldown": 4.0,
+  "range": 250,
+  "cast_time": 0.3,
+  "effect": {
+    "movement_speed_mult": 0.5,
+    "duration": 3.0
+  }
+}

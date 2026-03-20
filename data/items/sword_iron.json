@@ -1,0 +1,18 @@
+{
+  "id": "sword_iron",
+  "name": "Iron Sword",
+  "description": "A simple but reliable iron sword. A staple weapon for beginning warriors.",
+  "type": "weapon",
+  "slot": "weapon",
+  "rarity": "common",
+  "value": 50,
+  "stats": {
+    "attack": 8,
+    "attack_speed": 1.2
+  },
+  "requirements": {
+    "strength": 5
+  },
+  "stackable": false,
+  "max_stack": 1
+}
