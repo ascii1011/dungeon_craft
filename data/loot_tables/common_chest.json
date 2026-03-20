@@ -1,0 +1,11 @@
+{
+  "id": "common_chest",
+  "name": "Common Chest",
+  "gold": {"min": 10, "max": 30},
+  "items": [
+    {"item_id": "potion_health", "chance": 0.7, "quantity": 1},
+    {"item_id": "potion_mana",   "chance": 0.4, "quantity": 1},
+    {"item_id": "sword_iron",    "chance": 0.15, "quantity": 1},
+    {"item_id": "armor_leather", "chance": 0.1,  "quantity": 1}
+  ]
+}

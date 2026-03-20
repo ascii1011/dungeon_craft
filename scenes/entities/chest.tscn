@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://chest"]
+
+[ext_resource type="Script" path="res://scripts/entities/chest.gd" id="1_chest"]
+
+[sub_resource type="RectangleShape2D" id="1_rect"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="2_interact"]
+radius = 24.0
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_chest")
+loot_table_id = "common_chest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_rect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+; Placeholder sprite — frame 0 = closed, frame 1 = open.
+
+[node name="InteractArea" type="Area2D" parent="."]
+; Player stands in this area to become eligible to interact with the chest.
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("2_interact")
