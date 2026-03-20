@@ -1,0 +1,15 @@
+# Godot
+.godot/
+*.uid
+export_presets.cfg
+
+# Build outputs
+builds/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
