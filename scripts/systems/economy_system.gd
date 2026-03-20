@@ -1,3 +1,4 @@
+class_name EconomySystem
 extends Node
 
 signal transaction_completed(type: String, item_id: String, gold_amount: int)

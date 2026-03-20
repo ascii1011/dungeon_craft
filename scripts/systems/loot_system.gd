@@ -1,5 +1,6 @@
 ## LootSystem
 ## Rolls loot tables and spawns item pickups in the world.
+class_name LootSystem
 ## Reads enemy and chest loot table data, applies per-entry chance rolls,
 ## and emits EventBus signals for gold and XP rewards.
 ##
@@ -119,6 +120,24 @@ func spawn_item_pickup(item_id: String, position: Vector2, world_node: Node) -> 
 # ---------------------------------------------------------------------------
 # Testable helpers
 # ---------------------------------------------------------------------------
+
+## Pure loot roll against a pre-loaded table dictionary — no world spawning.
+## Returns an Array of item_id Strings for each entry that passed its chance roll.
+## Used by integration tests and any caller that wants roll results without
+## spawning scene nodes.
+## Expected table format: {"items": [{"item_id": String, "chance": float}, ...]}
+func roll_loot(table_data: Dictionary) -> Array:
+	var awarded: Array = []
+	var items: Array = table_data.get("items", [])
+	for entry in items:
+		var item_id: String = entry.get("item_id", "")
+		var chance: float = float(entry.get("chance", 0.0))
+		if item_id.is_empty():
+			continue
+		if _roll_chance(chance):
+			awarded.append({"item_id": item_id})
+	return awarded
+
 
 ## Returns true if a random roll beats the given chance threshold [0.0, 1.0].
 ## Separated into its own function so tests can assess probability logic

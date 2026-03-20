@@ -1,6 +1,6 @@
 extends GutTest
 
-# Integration test: enemy death -> loot roll -> inventory add chain
+# Integration test: loot roll -> inventory add chain
 
 var inventory: InventoryComponent
 var loot_system: LootSystem
@@ -26,32 +26,42 @@ func test_stackable_items_stack_correctly() -> void:
 
 
 func test_inventory_full_blocks_addition() -> void:
-	var signal_emitted := false
-	var spy := func() -> void:
-		signal_emitted = true
+	# Register mock data for all filler items so DataLoader doesn't hit disk.
+	var non_stackable := {"stackable": false, "max_stack": 1}
+	for i in range(20):
+		DataLoader.set_mock_item("unique_item_%d" % i, non_stackable)
+	DataLoader.set_mock_item("overflow_item", non_stackable)
 
+	var result_ref := {"emitted": false}
+	var spy := func() -> void:
+		result_ref["emitted"] = true
 	inventory.inventory_full.connect(spy)
 
-	# Fill all 20 slots with unique items
 	for i in range(20):
 		inventory.add_item("unique_item_%d" % i, 1)
 
-	# Attempt to add one more item
 	var result: bool = inventory.add_item("overflow_item", 1)
-
 	assert_false(result, "add_item should return false when inventory is full")
-	assert_true(signal_emitted, "inventory_full signal should be emitted when inventory is full")
+	assert_true(result_ref["emitted"], "inventory_full signal should be emitted when inventory is full")
 
 	inventory.inventory_full.disconnect(spy)
 
+	for i in range(20):
+		DataLoader.clear_mock_item("unique_item_%d" % i)
+	DataLoader.clear_mock_item("overflow_item")
+
 
 func test_equip_item_updates_equipment_slot() -> void:
-	# Mock DataLoader to return sword data with slot="weapon"
+	# Inject mock item data into DataLoader cache
 	var mock_item_data := {
 		"id": "sword_iron",
 		"name": "Iron Sword",
+		"type": "weapon",
 		"slot": "weapon",
-		"value": 50
+		"value": 50,
+		"stackable": false,
+		"max_stack": 1,
+		"requirements": {}
 	}
 	DataLoader.set_mock_item("sword_iron", mock_item_data)
 
@@ -64,7 +74,6 @@ func test_equip_item_updates_equipment_slot() -> void:
 
 
 func test_loot_probability_over_iterations() -> void:
-	# Roll a 50% chance item 200 times; expect between 70 and 130 successes (within ~3 sigma)
 	var loot_table := {
 		"items": [
 			{"item_id": "coin_gold", "chance": 0.5}

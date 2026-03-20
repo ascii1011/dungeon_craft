@@ -1,3 +1,4 @@
+class_name DungeonManager
 ## DungeonManager
 ## Handles zone loading/unloading and entity spawning for dungeon floors.
 ## Reads zone data from DataLoader and populates the world with enemies and NPCs.

@@ -16,12 +16,12 @@ func resolve_damage(attacker: Node, target: Node, raw_damage: int) -> int:
 	var target_defense: int = 0
 
 	var attacker_stats: Node = attacker.get_node_or_null("StatsComponent")
-	if attacker_stats != null:
-		attacker_bonus = attacker_stats.attack_power if "attack_power" in attacker_stats else 0
+	if attacker_stats != null and attacker_stats.has_method("get_attack_power"):
+		attacker_bonus = attacker_stats.get_attack_power()
 
 	var target_stats: Node = target.get_node_or_null("StatsComponent")
-	if target_stats != null:
-		target_defense = target_stats.defense if "defense" in target_stats else 0
+	if target_stats != null and target_stats.has_method("get_defense"):
+		target_defense = target_stats.get_defense()
 
 	var final_damage: int = max(1, raw_damage + attacker_bonus - target_defense)
 

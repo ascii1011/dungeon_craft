@@ -1,3 +1,4 @@
+class_name SaveSystem
 ## SaveSystem
 ## Handles serializing and writing full game state (player + GameState) to disk
 ## as a versioned JSON file. Add this node to the main scene manually.

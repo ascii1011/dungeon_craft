@@ -53,6 +53,15 @@ func load_shop(shop_id: String) -> Dictionary:
 func clear_cache() -> void:
 	_cache.clear()
 
+## Inject mock item data directly into the cache (for unit/integration tests).
+## The key matches the path DataLoader would normally build for load_item().
+func set_mock_item(item_id: String, data: Dictionary) -> void:
+	_cache["res://data/items/%s.json" % item_id] = data
+
+## Remove a previously injected mock item from the cache.
+func clear_mock_item(item_id: String) -> void:
+	_cache.erase("res://data/items/%s.json" % item_id)
+
 # ---------------------------------------------------------------------------
 # Private helpers
 # ---------------------------------------------------------------------------
