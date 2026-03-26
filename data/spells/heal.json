@@ -1,0 +1,11 @@
+{
+  "id": "heal",
+  "name": "Heal",
+  "description": "Channels restorative magic to mend wounds and recover health.",
+  "type": "heal",
+  "mana_cost": 20,
+  "cooldown": 3.0,
+  "range": 0,
+  "heal_amount": 40,
+  "cast_time": 0.8
+}

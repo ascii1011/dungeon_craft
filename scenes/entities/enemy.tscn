@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://enemy"]
+
+[ext_resource type="Script" path="res://scripts/entities/enemy.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2_health"]
+[ext_resource type="Script" path="res://scripts/components/stats_component.gd" id="3_stats"]
+[ext_resource type="Script" path="res://scripts/components/combat_component.gd" id="4_combat"]
+[ext_resource type="Script" path="res://scripts/entities/enemy_ai.gd" id="5_enemy_ai"]
+
+[sub_resource type="CapsuleShape2D" id="1_capsule"]
+radius = 10.0
+height = 20.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_capsule")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+; Placeholder sprite — no texture assigned yet.
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_health")
+max_hp = 30
+current_hp = 30
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("3_stats")
+strength = 10
+dexterity = 10
+intelligence = 10
+vitality = 10
+
+[node name="CombatComponent" type="Node" parent="."]
+script = ExtResource("4_combat")
+attack_range = 40.0
+
+[node name="EnemyAI" type="Node" parent="."]
+script = ExtResource("5_enemy_ai")

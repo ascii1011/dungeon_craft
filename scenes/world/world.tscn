@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dungeon_world"]
+
+[ext_resource type="Script" path="res://scripts/systems/dungeon_manager.gd" id="1_dungeonmgr"]
+
+[node name="World" type="Node2D"]
+
+[node name="DungeonManager" type="Node" parent="."]
+script = ExtResource("1_dungeonmgr")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+; Placeholder floor TileMapLayer — no texture assigned yet.
+; Tile data will be populated in the asset pass when dungeon_stone.tres is ready.
+; Layer 0: floor tiles (walkable, no collision).
+
+[node name="Walls" type="TileMapLayer" parent="."]
+; Placeholder wall TileMapLayer — no texture assigned yet.
+; Tile data will be populated in the asset pass when dungeon_stone.tres is ready.
+; Layer 1: wall tiles — physics layer enabled to block movement.
+collision_layer = 1
+collision_mask = 1
+
+[node name="Entities" type="Node2D" parent="."]
+; Enemies and NPCs are spawned here as children by DungeonManager._spawn_entities().
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(80, 80)
+; Marks the default player spawn point for this scene.
+; DungeonManager.get_player_spawn() returns the authoritative position from zone JSON.
+
+[node name="UI" type="CanvasLayer" parent="."]
+; HUD elements (HP bar, mana bar, minimap, hotbar, gold counter) will live here.
+; Populated in the HUD pass.

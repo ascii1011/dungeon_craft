@@ -1,0 +1,439 @@
+[gd_scene load_steps=2 format=3 uid="uid://inventory_ui_scene"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory_ui.gd" id="1_inv_ui"]
+
+[node name="InventoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+script = ExtResource("1_inv_ui")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ItemGrid" type="GridContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="ItemSlot0" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot1" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot2" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot3" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot4" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot5" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot6" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot7" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot8" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot9" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot10" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot11" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot11"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot12" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot12"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot13" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot13"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot14" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot14"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot15" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot15"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot16" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot16"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot17" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot17"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot18" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot18"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemSlot19" type="Panel" parent="Background/VBoxContainer/ItemGrid"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/ItemGrid/ItemSlot19"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Background/VBoxContainer"]
+layout_mode = 2
+
+[node name="EquipmentSlots" type="HBoxContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Weapon" type="VBoxContainer" parent="Background/VBoxContainer/EquipmentSlots"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Weapon"]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+
+[node name="WeaponSlot" type="Panel" parent="Background/VBoxContainer/EquipmentSlots/Weapon"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Weapon/WeaponSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Armor" type="VBoxContainer" parent="Background/VBoxContainer/EquipmentSlots"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Armor"]
+layout_mode = 2
+text = "Armor"
+horizontal_alignment = 1
+
+[node name="ArmorSlot" type="Panel" parent="Background/VBoxContainer/EquipmentSlots/Armor"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Armor/ArmorSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Ring" type="VBoxContainer" parent="Background/VBoxContainer/EquipmentSlots"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Ring"]
+layout_mode = 2
+text = "Ring"
+horizontal_alignment = 1
+
+[node name="RingSlot" type="Panel" parent="Background/VBoxContainer/EquipmentSlots/Ring"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/EquipmentSlots/Ring/RingSlot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="Background"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -32.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 1
+text = "X"

@@ -1,0 +1,17 @@
+{
+  "id": "potion_mana",
+  "name": "Mana Potion",
+  "description": "A glowing azure liquid that restores a portion of the drinker's magical reserves.",
+  "type": "consumable",
+  "slot": null,
+  "rarity": "common",
+  "value": 30,
+  "stats": {},
+  "requirements": {},
+  "effect": {
+    "type": "restore_mana",
+    "amount": 50
+  },
+  "stackable": true,
+  "max_stack": 10
+}

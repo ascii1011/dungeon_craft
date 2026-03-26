@@ -244,38 +244,38 @@ feature/* branch
 ## Build Phases
 
 ### Phase 1 — Engine Foundation
-- [ ] Godot project setup, folder structure, scene skeleton
-- [ ] `GameState` and `EventBus` singletons
-- [ ] `DataLoader` — reads and caches JSON data files
-- [ ] Tilemap renderer + basic dungeon scene (hand-built floor 1)
-- [ ] Player scene: movement (click-to-move or WASD), camera follow
-- [ ] Basic CI: data validation + gdtoolkit lint
+- [x] Godot project setup, folder structure, scene skeleton
+- [x] `GameState` and `EventBus` singletons
+- [x] `DataLoader` — reads and caches JSON data files
+- [x] Tilemap renderer + basic dungeon scene (hand-built floor 1)
+- [x] Player scene: movement (click-to-move or WASD), camera follow
+- [x] Basic CI: data validation + gdtoolkit lint
 
 ### Phase 2 — Entity & Component System
-- [ ] Component scripts: Health, Stats, Movement, Combat, Inventory
-- [ ] Player assembled from components + driven by data (human.json)
-- [ ] Enemy scene + basic AI (patrol, aggro, attack)
-- [ ] Combat system: melee hit detection, damage calc, death
+- [x] Component scripts: Health, Stats, Movement, Combat, Inventory
+- [x] Player assembled from components + driven by data (human.json)
+- [x] Enemy scene + basic AI (patrol, aggro, attack)
+- [x] Combat system: melee hit detection, damage calc, death
 
 ### Phase 3 — Items & Spells
-- [ ] Item registry + inventory component + inventory UI
-- [ ] Equipment slots (weapon, armor, ring)
-- [ ] Spell system: spellbook component, mana, cooldowns
-- [ ] 5 starter spells implemented
-- [ ] Loot drops from enemies
+- [x] Item registry + inventory component + inventory UI
+- [x] Equipment slots (weapon, armor, ring)
+- [x] Spell system: spellbook component, mana, cooldowns
+- [x] 5 starter spells implemented
+- [x] Loot drops from enemies
 
 ### Phase 4 — Economy & NPCs
-- [ ] NPC scene + dialogue system (simple tree)
-- [ ] Shop UI + trade component
-- [ ] Gold currency flow
-- [ ] Chest/treasure interactables
+- [x] NPC scene + dialogue system (simple tree)
+- [x] Shop UI + trade component
+- [x] Gold currency flow
+- [x] Chest/treasure interactables
 
 ### Phase 5 — Polish & CI/CD
-- [ ] HUD: HP, mana, minimap, hotbar, gold
-- [ ] Save/load system
-- [ ] Sound effects + background music
-- [ ] GUT test suite (unit + integration)
-- [ ] GitHub Actions: full CI + build exports
+- [x] HUD: HP, mana, minimap, hotbar, gold
+- [x] Save/load system
+- [x] Sound effects + background music
+- [x] GUT test suite (unit + integration)
+- [x] GitHub Actions: full CI + build exports
 
 ### Phase 6 — Extensibility Pass (before multiplayer)
 - [ ] Procedural dungeon generator

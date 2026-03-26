@@ -1,0 +1,167 @@
+[gd_scene load_steps=2 format=3 uid="uid://hud_scene"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopLeft" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 72.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="HPRow" type="HBoxContainer" parent="Control/TopLeft"]
+layout_mode = 2
+
+[node name="HPBar" type="ProgressBar" parent="Control/TopLeft/HPRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 20)
+max_value = 100.0
+value = 100.0
+fill_mode = 0
+
+[node name="HPLabel" type="Label" parent="Control/TopLeft/HPRow"]
+layout_mode = 2
+text = "100 / 100"
+
+[node name="ManaRow" type="HBoxContainer" parent="Control/TopLeft"]
+layout_mode = 2
+
+[node name="ManaBar" type="ProgressBar" parent="Control/TopLeft/ManaRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 20)
+max_value = 100.0
+value = 100.0
+fill_mode = 0
+
+[node name="ManaLabel" type="Label" parent="Control/TopLeft/ManaRow"]
+layout_mode = 2
+text = "100 / 100"
+
+[node name="TopRight" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="GoldLabel" type="Label" parent="Control/TopRight"]
+layout_mode = 2
+horizontal_alignment = 2
+text = "Gold: 0"
+
+[node name="XPLabel" type="Label" parent="Control/TopRight"]
+layout_mode = 2
+horizontal_alignment = 2
+text = "XP: 0"
+
+[node name="Hotbar" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -72.0
+offset_right = 96.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Slot1" type="PanelContainer" parent="Control/Hotbar"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="VBox1" type="VBoxContainer" parent="Control/Hotbar/Slot1"]
+layout_mode = 2
+alignment = 1
+
+[node name="KeyLabel" type="Label" parent="Control/Hotbar/Slot1/VBox1"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "1"
+
+[node name="SpellLabel" type="Label" parent="Control/Hotbar/Slot1/VBox1"]
+layout_mode = 2
+horizontal_alignment = 1
+text = ""
+
+[node name="Slot2" type="PanelContainer" parent="Control/Hotbar"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="VBox2" type="VBoxContainer" parent="Control/Hotbar/Slot2"]
+layout_mode = 2
+alignment = 1
+
+[node name="KeyLabel" type="Label" parent="Control/Hotbar/Slot2/VBox2"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "2"
+
+[node name="SpellLabel" type="Label" parent="Control/Hotbar/Slot2/VBox2"]
+layout_mode = 2
+horizontal_alignment = 1
+text = ""
+
+[node name="Slot3" type="PanelContainer" parent="Control/Hotbar"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="VBox3" type="VBoxContainer" parent="Control/Hotbar/Slot3"]
+layout_mode = 2
+alignment = 1
+
+[node name="KeyLabel" type="Label" parent="Control/Hotbar/Slot3/VBox3"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "3"
+
+[node name="SpellLabel" type="Label" parent="Control/Hotbar/Slot3/VBox3"]
+layout_mode = 2
+horizontal_alignment = 1
+text = ""
+
+[node name="MinimapContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -158.0
+offset_top = -158.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_minimum_size = Vector2(150, 150)
+
+[node name="MinimapLabel" type="Label" parent="Control/MinimapContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "Minimap\n(Phase 5)"

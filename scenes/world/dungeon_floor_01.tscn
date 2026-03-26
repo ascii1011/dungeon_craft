@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dungeon_floor_01"]
+
+[ext_resource type="Script" path="res://scripts/systems/dungeon_manager.gd" id="1_dm"]
+[ext_resource type="PackedScene" path="res://scenes/world/dungeon_renderer.tscn" id="2_dr"]
+
+[node name="DungeonFloor01" type="Node2D"]
+
+[node name="DungeonRenderer" parent="." instance=ExtResource("2_dr")]
+
+[node name="DungeonManager" type="Node" parent="."]
+script = ExtResource("1_dm")
+
+[node name="Entities" type="Node2D" parent="."]
+; Enemies, NPCs, and chests spawned here at runtime by DungeonManager.

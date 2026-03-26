@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    name: GDScript Lint & Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install gdtoolkit
+        run: pip install gdtoolkit
+
+      - name: Lint GDScript files
+        run: gdlint scripts/
+
+      - name: Check GDScript formatting
+        run: gdformat --check scripts/
+
+  validate-data:
+    name: Validate Data & Python Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Run data validator
+        run: python tools/validate_data.py
+
+      - name: Run validator unit tests
+        run: python -m pytest tools/test_validate_data.py -v
+
+  unit-tests:
+    name: GUT Tests (Headless)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.6 headless binary
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+          unzip -q Godot_v4.6-stable_linux.x86_64.zip
+          chmod +x Godot_v4.6-stable_linux.x86_64
+          sudo mv Godot_v4.6-stable_linux.x86_64 /usr/local/bin/godot
+
+      - name: Run unit and integration tests headless
+        run: |
+          godot --headless --path . \
+            -s addons/gut/cli/gut_cli.gd \
+            -gdir=res://tests/unit/,res://tests/integration/ \
+            -ginclude_subdirs \
+            -gexit

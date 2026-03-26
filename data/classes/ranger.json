@@ -1,0 +1,14 @@
+{
+  "id": "ranger",
+  "name": "Ranger",
+  "description": "Swift and sure-footed, the ranger is a master of navigating the treacherous corridors of the dungeon. Relying on speed and keen senses over brute force, rangers strike from a distance and vanish before their enemies can retaliate.",
+  "stat_modifiers": {
+    "dexterity": 3,
+    "strength": 1,
+    "intelligence": 0
+  },
+  "starting_spells": ["blink"],
+  "starting_items": ["potion_health"],
+  "weapon_proficiencies": ["bow", "dagger", "short_sword"],
+  "armor_proficiencies": ["light"]
+}

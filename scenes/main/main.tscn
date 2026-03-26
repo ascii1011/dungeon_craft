@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://main_scene"]
+
+[ext_resource type="Script" path="res://scripts/core/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/main/main_menu.tscn" id="3_mainmenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/character_creation.tscn" id="4_cc"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue_ui.tscn" id="5_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/shop_ui.tscn" id="6_shop"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="WorldContainer" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUD" instance=ExtResource("2_hud")]
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="MainMenu" instance=ExtResource("3_mainmenu")]
+
+[node name="CharacterCreation" parent="." instance=ExtResource("4_cc")]
+
+[node name="DialogueUILayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="DialogueUILayer" instance=ExtResource("5_dialogue")]
+
+[node name="ShopUILayer" type="CanvasLayer" parent="."]
+
+[node name="ShopUI" parent="ShopUILayer" instance=ExtResource("6_shop")]
+
+[node name="PauseOverlay" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PauseOverlay"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+mouse_filter = 0
+
+[node name="PausedLabel" type="Label" parent="PauseOverlay"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -24.0
+offset_right = 60.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "PAUSED"
+theme_override_font_sizes/font_size = 48

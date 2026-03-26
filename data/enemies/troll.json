@@ -1,0 +1,25 @@
+{
+  "id": "troll",
+  "name": "Troll",
+  "description": "A massive, regenerating beast with thick hide and fearsome strength. Trolls are among the most dangerous creatures in the dungeon.",
+  "level": 4,
+  "stats": {
+    "hp": 180,
+    "attack": 22,
+    "defense": 12,
+    "speed": 55,
+    "aggro_range": 200,
+    "attack_range": 60,
+    "attack_speed": 0.8
+  },
+  "xp_reward": 40,
+  "gold_drop": {
+    "min": 8,
+    "max": 20
+  },
+  "loot_table": [
+    { "item_id": "potion_health", "chance": 0.4 },
+    { "item_id": "sword_iron", "chance": 0.1 }
+  ],
+  "ai": "melee_chase"
+}

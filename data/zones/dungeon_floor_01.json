@@ -1,0 +1,24 @@
+{
+  "id": "dungeon_floor_01",
+  "name": "The First Descent",
+  "description": "Cold stone. The smell of rot. Your journey begins.",
+  "tileset": "res://assets/tilesets/dungeon_stone.tres",
+  "background_music": "res://assets/audio/dungeon_ambient_01.ogg",
+  "enemy_spawns": [
+    {"enemy_id": "goblin", "position": [320, 160], "count": 2},
+    {"enemy_id": "goblin", "position": [480, 240], "count": 3},
+    {"enemy_id": "troll",  "position": [640, 400], "count": 1}
+  ],
+  "npc_spawns": [
+    {"npc_id": "blacksmith", "position": [200, 300]}
+  ],
+  "player_spawn": [80, 80],
+  "exit_positions": [
+    {"position": [720, 480], "target_zone": "dungeon_floor_02"}
+  ],
+  "chest_positions": [
+    {"position": [400, 320], "loot_table": "common_chest"}
+  ],
+  "dimensions": {"width": 50, "height": 35},
+  "tile_size": 16
+}

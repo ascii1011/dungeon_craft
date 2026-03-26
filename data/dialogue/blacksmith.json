@@ -1,0 +1,9 @@
+{
+  "id": "blacksmith",
+  "greeting": "Aye, need something forged? Got the best steel in these dungeons.",
+  "options": [
+    {"text": "Let me see your wares.", "action": "open_shop", "shop_id": "blacksmith"},
+    {"text": "What is this place?",   "action": "dialogue", "response": "Old dungeon, been here longer than I have. Strange things lurk below, friend."},
+    {"text": "Farewell.",             "action": "close"}
+  ]
+}

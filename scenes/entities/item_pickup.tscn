@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://item_pickup"]
+
+[ext_resource type="Script" path="res://scripts/entities/item_pickup.gd" id="1_pickup"]
+
+[sub_resource type="CircleShape2D" id="1_circle"]
+radius = 8.0
+
+[node name="ItemPickup" type="Area2D"]
+script = ExtResource("1_pickup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_circle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+; Placeholder sprite — texture assigned at runtime based on item data.
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = -8.0
+horizontal_alignment = 1
+; Item name shown on hover; hidden by default.

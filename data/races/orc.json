@@ -1,0 +1,27 @@
+{
+  "id": "orc",
+  "name": "Orc",
+  "description": "Born from the darkness beneath the mountains, orcs are fearsome warriors who thrive in the chaos of dungeon combat. Their natural ferocity and thick hides make them nearly unstoppable once bloodlust takes hold. Few survive an encounter with an orc in the depths.",
+  "base_stats": {
+    "hp": 120,
+    "mana": 40,
+    "strength": 15,
+    "dexterity": 8,
+    "intelligence": 5,
+    "vitality": 13
+  },
+  "stat_growth": {
+    "hp": 10,
+    "mana": 2,
+    "strength": 2,
+    "dexterity": 1,
+    "intelligence": 0,
+    "vitality": 2
+  },
+  "traits": ["bloodrage", "tough_skin"],
+  "allowed_classes": ["warrior"],
+  "trait_descriptions": {
+    "bloodrage": "When HP falls below 30%, attack speed and damage are increased significantly.",
+    "tough_skin": "Natural armor reduces incoming physical damage by a small amount."
+  }
+}

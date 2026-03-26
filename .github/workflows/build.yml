@@ -1,0 +1,79 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+jobs:
+  export:
+    name: Export (${{ matrix.platform }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux
+          - windows
+          - web
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.6 stable binary
+        run: |
+          wget -q https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+          unzip -q Godot_v4.6-stable_linux.x86_64.zip
+          chmod +x Godot_v4.6-stable_linux.x86_64
+          sudo mv Godot_v4.6-stable_linux.x86_64 /usr/local/bin/godot
+
+      - name: Download and install Godot export templates
+        run: |
+          TEMPLATES_DIR="${HOME}/.local/share/godot/export_templates/4.6.stable"
+          mkdir -p "${TEMPLATES_DIR}"
+          wget -q -O export_templates.tpz \
+            https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+          unzip -q export_templates.tpz -d export_templates_extracted
+          cp export_templates_extracted/templates/. "${TEMPLATES_DIR}/" -r
+
+      - name: Create builds directory
+        run: mkdir -p builds
+
+      - name: Export for ${{ matrix.platform }}
+        run: |
+          godot --headless --export-release "${{ matrix.platform }}" "builds/DungeonCraft-${{ matrix.platform }}"
+
+      - name: Upload ${{ matrix.platform }} artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DungeonCraft-${{ matrix.platform }}
+          path: builds/DungeonCraft-${{ matrix.platform }}*
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: export
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Create GitHub Release and upload artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.ref_name }}"
+          gh release create "${TAG}" \
+            --title "DungeonCraft ${TAG}" \
+            --generate-notes \
+            artifacts/DungeonCraft-linux/* \
+            artifacts/DungeonCraft-windows/* \
+            artifacts/DungeonCraft-web/*
