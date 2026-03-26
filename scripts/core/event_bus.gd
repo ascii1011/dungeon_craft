@@ -21,6 +21,10 @@ signal player_died()
 ## Emitted after the player successfully transitions to a new zone.
 signal player_zone_changed(zone_id: String)
 
+## Emitted when the player presses the interact key. Listeners (NPCs, chests)
+## handle the interaction if the player is within range.
+signal player_interact(player: Node)
+
 # ---------------------------------------------------------------------------
 # Enemy signals
 # ---------------------------------------------------------------------------

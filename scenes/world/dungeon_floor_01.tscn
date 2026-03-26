@@ -1,72 +1,14 @@
-[gd_scene load_steps=1 format=3 uid="uid://dungeon_floor_01"]
+[gd_scene load_steps=3 format=3 uid="uid://dungeon_floor_01"]
 
-; ============================================================
-; dungeon_floor_01.tscn — Hand-built 4-room dungeon layout
-; ============================================================
-;
-; All coordinates below are in tile units (1 tile = 16px).
-; Map dimensions: 50 tiles wide x 35 tiles tall.
-;
-; Room layout (tile coordinates):
-;
-;   Room 1 — Entry (top-left)
-;     Tiles: col 1–10, row 1–8  (~10x8 tiles)
-;     Player spawns at tile (5,5) → pixel (80, 80)
-;
-;   Room 2 — Combat (center)
-;     Tiles: col 19–30, row 8–17  (~12x10 tiles)
-;     Contains: 2 goblins near (320,160), 3 goblins near (480,240)
-;
-;   Room 3 — Merchant (left-center)
-;     Tiles: col 1–8, row 14–21  (~8x8 tiles)
-;     Contains: Blacksmith NPC near (200,300)
-;
-;   Room 4 — Boss (bottom-right)
-;     Tiles: col 35–48, row 22–33  (~14x12 tiles)
-;     Contains: 1 troll near (640,400), 2 goblins near (320,160)
-;     Exit portal at tile (45,30) → pixel (720,480) → dungeon_floor_02
-;
-; Corridors (2 tiles wide):
-;   - Entry → Combat:   row 5–6, col 10–19
-;   - Entry → Merchant: col 5–6, row 8–14
-;   - Combat → Boss:    row 12–13, col 30–35
-;   - Merchant → Boss:  row 20–21, col 8–35  (long south corridor)
-;
-; Chest:
-;   Position tile (25,20) → pixel (400,320), loot_table "common_chest"
-;
-; TileMap tile data is intentionally left empty for this placeholder pass.
-; Fill it in the asset pass once dungeon_stone.tres is imported.
-; ============================================================
+[ext_resource type="Script" path="res://scripts/systems/dungeon_manager.gd" id="1_dm"]
+[ext_resource type="PackedScene" path="res://scenes/world/dungeon_renderer.tscn" id="2_dr"]
 
 [node name="DungeonFloor01" type="Node2D"]
 
-[node name="Floor" type="TileMapLayer" parent="."]
-; Floor tiles — no collision. Texture assigned in asset pass.
-; Covers all walkable areas: rooms + corridors.
+[node name="DungeonRenderer" parent="." instance=ExtResource("2_dr")]
 
-[node name="Walls" type="TileMapLayer" parent="."]
-; Wall tiles — collision layer 1 blocks player and enemy movement.
-; Surrounds every room and lines corridor edges.
-collision_layer = 1
-collision_mask = 1
+[node name="DungeonManager" type="Node" parent="."]
+script = ExtResource("1_dm")
 
 [node name="Entities" type="Node2D" parent="."]
-; Enemies and NPCs spawned here at runtime by DungeonManager.
-
-[node name="PlayerSpawn" type="Node2D" parent="."]
-; Room 1 — Entry: tile (5,5) → pixel (80, 80)
-position = Vector2(80, 80)
-
-[node name="ExitPortal" type="Node2D" parent="."]
-; Room 4 — Boss exit: tile (45,30) → pixel (720, 480)
-; Leads to dungeon_floor_02 when the player interacts.
-position = Vector2(720, 480)
-
-[node name="Chest_01" type="Node2D" parent="."]
-; Center map chest: tile (25,20) → pixel (400, 320)
-; Loot table: common_chest
-position = Vector2(400, 320)
-
-[node name="UI" type="CanvasLayer" parent="."]
-; HUD canvas — populated in the HUD pass.
+; Enemies, NPCs, and chests spawned here at runtime by DungeonManager.

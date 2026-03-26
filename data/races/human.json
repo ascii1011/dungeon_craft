@@ -19,5 +19,5 @@
     "vitality": 1
   },
   "traits": ["adaptable"],
-  "allowed_classes": ["warrior", "mage"]
+  "allowed_classes": ["warrior", "mage", "ranger"]
 }

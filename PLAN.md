@@ -249,7 +249,7 @@ feature/* branch
 - [x] `DataLoader` — reads and caches JSON data files
 - [x] Tilemap renderer + basic dungeon scene (hand-built floor 1)
 - [x] Player scene: movement (click-to-move or WASD), camera follow
-- [ ] Basic CI: data validation + gdtoolkit lint
+- [x] Basic CI: data validation + gdtoolkit lint
 
 ### Phase 2 — Entity & Component System
 - [x] Component scripts: Health, Stats, Movement, Combat, Inventory
@@ -275,7 +275,7 @@ feature/* branch
 - [x] Save/load system
 - [x] Sound effects + background music
 - [x] GUT test suite (unit + integration)
-- [ ] GitHub Actions: full CI + build exports
+- [x] GitHub Actions: full CI + build exports
 
 ### Phase 6 — Extensibility Pass (before multiplayer)
 - [ ] Procedural dungeon generator

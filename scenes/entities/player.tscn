@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://player"]
+[gd_scene load_steps=10 format=3 uid="uid://player"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2_health"]
 [ext_resource type="Script" path="res://scripts/components/stats_component.gd" id="3_stats"]
 [ext_resource type="Script" path="res://scripts/components/movement_component.gd" id="4_movement"]
 [ext_resource type="Script" path="res://scripts/components/combat_component.gd" id="5_combat"]
+[ext_resource type="Script" path="res://scripts/components/inventory_component.gd" id="6_inventory"]
+[ext_resource type="Script" path="res://scripts/components/spellbook_component.gd" id="7_spellbook"]
 
 [sub_resource type="CapsuleShape2D" id="1_capsule"]
 radius = 12.0
 height = 24.0
+
+[sub_resource type="CircleShape2D" id="2_pickup"]
+radius = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_player")
@@ -16,8 +21,13 @@ script = ExtResource("1_player")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1_capsule")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-; Placeholder sprite — no texture assigned yet.
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, -18, 10, -18, 14, -8, 10, 14, 0, 18, -10, 14, -14, -8)
+color = Color(0.15, 0.55, 0.85, 1)
+
+[node name="DirectionArrow" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -22, 6, -14, -6, -14)
+color = Color(0.95, 0.85, 0.1, 1)
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_health")
@@ -42,7 +52,14 @@ script = ExtResource("5_combat")
 attack_range = 60.0
 attack_cooldown = 0.8
 
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("6_inventory")
+
+[node name="SpellbookComponent" type="Node" parent="."]
+script = ExtResource("7_spellbook")
+max_mana = 80
+mana_regen_per_second = 2.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 5.0
+position_smoothing_enabled = false

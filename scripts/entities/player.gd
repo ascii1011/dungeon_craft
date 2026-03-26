@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var combat_component: CombatComponent = $CombatComponent
+@onready var _body: Polygon2D = $Body
 
 # ---------------------------------------------------------------------------
 # State
@@ -26,7 +27,11 @@ var _facing: Vector2 = Vector2.DOWN
 
 func _ready() -> void:
 	# Connect the death signal to the global EventBus so the game can react.
-	health_component.died.connect(EventBus.player_died)
+	health_component.died.connect(EventBus.player_died.emit)
+	# Ensure this camera is the active 2D camera immediately.
+	var cam: Camera2D = get_node_or_null("Camera2D")
+	if cam:
+		cam.make_current()
 
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +42,9 @@ func _physics_process(delta: float) -> void:
 	var dir: Vector2 = movement_component.get_input_vector()
 	if dir != Vector2.ZERO:
 		_facing = dir
+		# Rotate body polygon so the arrow always points the way the player faces.
+		# Polygon default points up (-Y); angle() + 90° aligns it to facing.
+		_body.rotation = _facing.angle() + PI * 0.5
 
 
 func _process(_delta: float) -> void:
@@ -48,14 +56,59 @@ func _process(_delta: float) -> void:
 # Initialization
 # ---------------------------------------------------------------------------
 
-## Load a race by ID and apply its stat bonuses to the StatsComponent.
+## Load race and optional class data, applying all stats/items/spells.
 ## Call this after adding the player to the scene tree.
-func initialize(race_id: String) -> void:
+func initialize(race_id: String, class_id: String = "") -> void:
 	var race_data: Dictionary = DataLoader.load_race(race_id)
 	if race_data.is_empty():
 		push_warning("Player.initialize: no race data found for '%s'" % race_id)
 		return
-	stats_component.apply_race_data(race_data)
+
+	# Apply core stats from race base_stats (nested under "base_stats" key).
+	var base_stats: Dictionary = race_data.get("base_stats", {})
+	stats_component.apply_race_data(base_stats)
+	if base_stats.has("hp"):
+		health_component.set_max_hp(int(base_stats["hp"]))
+	var spellbook: SpellbookComponent = get_node_or_null("SpellbookComponent")
+	if spellbook and base_stats.has("mana"):
+		spellbook.max_mana = int(base_stats["mana"])
+		spellbook.current_mana = spellbook.max_mana
+
+	GameState.player_data["race"] = race_id
+
+	if class_id.is_empty():
+		return
+
+	var class_data: Dictionary = DataLoader.load_class(class_id)
+	if class_data.is_empty():
+		push_warning("Player.initialize: no class data found for '%s'" % class_id)
+		return
+
+	GameState.player_data["class"] = class_id
+
+	# Apply class stat modifiers (strength, dexterity, intelligence, vitality).
+	var mods: Dictionary = class_data.get("stat_modifiers", {})
+	for stat in ["strength", "dexterity", "intelligence", "vitality"]:
+		var val: int = int(mods.get(stat, 0))
+		if val != 0:
+			stats_component.add_modifier(stat, class_id, val)
+
+	# Apply mana bonus from class (e.g. mage +20 mana).
+	var mana_bonus: int = int(mods.get("mana", 0))
+	if mana_bonus != 0 and spellbook != null:
+		spellbook.max_mana += mana_bonus
+		spellbook.current_mana = spellbook.max_mana
+
+	# Learn starting spells.
+	if spellbook != null:
+		for spell_id in class_data.get("starting_spells", []):
+			spellbook.learn_spell(spell_id)
+
+	# Give starting items.
+	var inventory: InventoryComponent = get_node_or_null("InventoryComponent")
+	if inventory != null:
+		for item_id in class_data.get("starting_items", []):
+			inventory.add_item(item_id)
 
 # ---------------------------------------------------------------------------
 # Private input handlers

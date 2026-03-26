@@ -54,37 +54,23 @@ jobs:
         run: python -m pytest tools/test_validate_data.py -v
 
   unit-tests:
-    name: GUT Unit Tests (Headless)
+    name: GUT Tests (Headless)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download Godot 4.3 headless binary
+      - name: Download Godot 4.6 headless binary
         run: |
-          wget -q https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-          unzip -q Godot_v4.3-stable_linux.x86_64.zip
-          chmod +x Godot_v4.3-stable_linux.x86_64
+          wget -q https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+          unzip -q Godot_v4.6-stable_linux.x86_64.zip
+          chmod +x Godot_v4.6-stable_linux.x86_64
+          sudo mv Godot_v4.6-stable_linux.x86_64 /usr/local/bin/godot
 
-      - name: Install GUT addon
+      - name: Run unit and integration tests headless
         run: |
-          mkdir -p addons/gut
-          # Download GUT 7.4.1 from the godot-gut/gut GitHub releases
-          wget -q -O gut.zip https://github.com/bitwes/Gut/releases/download/v7.4.1/gut_v7.4.1.zip
-          unzip -q gut.zip -d gut_extracted
-          # The zip contains an addons/gut/ directory; copy its contents
-          cp -r gut_extracted/addons/gut/. addons/gut/
-
-      - name: Run unit tests headless
-        run: |
-          ./Godot_v4.3-stable_linux.x86_64 \
-            --headless \
-            --path . \
-            -s addons/gut/gut_cmdln.gd \
-            -gdir=res://tests/unit/ \
+          godot --headless --path . \
+            -s addons/gut/cli/gut_cli.gd \
+            -gdir=res://tests/unit/,res://tests/integration/ \
+            -ginclude_subdirs \
             -gexit
-          EXIT_CODE=$?
-          if [ $EXIT_CODE -ne 0 ]; then
-            echo "Unit tests failed with exit code $EXIT_CODE"
-            exit $EXIT_CODE
-          fi

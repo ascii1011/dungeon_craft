@@ -40,6 +40,10 @@ func load_enemy(enemy_id: String) -> Dictionary:
 func load_zone(zone_id: String) -> Dictionary:
 	return _load_json("res://data/zones/%s.json" % zone_id)
 
+## Load class definition from `res://data/classes/{class_id}.json`.
+func load_class(class_id: String) -> Dictionary:
+	return _load_json("res://data/classes/%s.json" % class_id)
+
 ## Load shop definition from `res://data/shops/{shop_id}.json`.
 func load_shop(shop_id: String) -> Dictionary:
 	return _load_json("res://data/shops/%s.json" % shop_id)

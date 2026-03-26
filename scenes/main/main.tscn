@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=7 format=3 uid="uid://main_scene"]
 
 [ext_resource type="Script" path="res://scripts/core/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://scenes/main/main_menu.tscn" id="3_mainmenu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/character_creation.tscn" id="4_cc"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue_ui.tscn" id="5_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/shop_ui.tscn" id="6_shop"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
 
-[node name="WorldContainer" type="Node" parent="."]
+[node name="WorldContainer" type="Node2D" parent="."]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -16,6 +19,16 @@ script = ExtResource("1_main")
 [node name="MainMenu" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="MainMenu" instance=ExtResource("3_mainmenu")]
+
+[node name="CharacterCreation" parent="." instance=ExtResource("4_cc")]
+
+[node name="DialogueUILayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="DialogueUILayer" instance=ExtResource("5_dialogue")]
+
+[node name="ShopUILayer" type="CanvasLayer" parent="."]
+
+[node name="ShopUI" parent="ShopUILayer" instance=ExtResource("6_shop")]
 
 [node name="PauseOverlay" type="CanvasLayer" parent="."]
 visible = false

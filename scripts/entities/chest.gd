@@ -27,12 +27,14 @@ signal chest_opened(loot_table_id: String)
 # ---------------------------------------------------------------------------
 
 var _opened: bool = false
+var _player_in_range: bool = false
 
 # ---------------------------------------------------------------------------
 # Child node references
 # ---------------------------------------------------------------------------
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var _interact_area: Area2D = $InteractArea
 
 ## LootSystem reference — resolved from the scene tree if present, otherwise
 ## instantiated locally so the chest is self-contained.
@@ -43,7 +45,23 @@ var _opened: bool = false
 # ---------------------------------------------------------------------------
 
 func _ready() -> void:
-	pass  # Interaction is triggered externally via interact().
+	_interact_area.body_entered.connect(_on_body_entered)
+	_interact_area.body_exited.connect(_on_body_exited)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and _player_in_range and not _opened:
+		interact()
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group("player"):
+		_player_in_range = true
+
+
+func _on_body_exited(body: Node) -> void:
+	if body.is_in_group("player"):
+		_player_in_range = false
 
 # ---------------------------------------------------------------------------
 # Public API

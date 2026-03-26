@@ -19,7 +19,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -120.0
+offset_top = -140.0
 offset_right = 150.0
 offset_bottom = 120.0
 grow_horizontal = 2
@@ -41,6 +41,11 @@ theme_override_font_sizes/font_size = 18
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+visible = false
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

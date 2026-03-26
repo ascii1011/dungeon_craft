@@ -7,9 +7,9 @@ extends Node
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-const MIN_ROOM_SIZE: int = 6
-const MAX_ROOM_SIZE: int = 16
-const MIN_SPLIT_SIZE: int = 14
+const MIN_ROOM_SIZE: int = 10
+const MAX_ROOM_SIZE: int = 24
+const MIN_SPLIT_SIZE: int = 20
 const TILE_FLOOR: int = 0
 const TILE_WALL: int = 1
 const TILE_DOOR: int = 2
@@ -86,7 +86,7 @@ func generate(width: int, height: int, seed: int = -1) -> Dictionary:
 
 func _split(node: BSPNode, depth: int) -> void:
 	# Stop conditions: too small or too deep
-	if depth > 5:
+	if depth > 4:
 		node.is_leaf = true
 		return
 	if node.rect.size.x < MIN_SPLIT_SIZE * 2 and node.rect.size.y < MIN_SPLIT_SIZE * 2:
@@ -264,7 +264,7 @@ func _carve_corridor(from: Vector2i, to: Vector2i) -> void:
 	var min_x: int = min(from.x, to.x)
 	var max_x: int = max(from.x, to.x)
 	for x in range(min_x, max_x + 1):
-		for dy in range(-1, 2):
+		for dy in range(-2, 3):
 			var ty: int = from.y + dy
 			if _in_bounds(x, ty) and _tiles[x][ty] != TILE_FLOOR:
 				_tiles[x][ty] = TILE_FLOOR
@@ -272,7 +272,7 @@ func _carve_corridor(from: Vector2i, to: Vector2i) -> void:
 	var min_y: int = min(from.y, to.y)
 	var max_y: int = max(from.y, to.y)
 	for y in range(min_y, max_y + 1):
-		for dx in range(-1, 2):
+		for dx in range(-2, 3):
 			var tx: int = to.x + dx
 			if _in_bounds(tx, y) and _tiles[tx][y] != TILE_FLOOR:
 				_tiles[tx][y] = TILE_FLOOR
